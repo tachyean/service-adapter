@@ -8,7 +8,7 @@ $ npm install service-adapter
 ```js
 var adapter=require('service-adapter');
 ```
-#### A simple usage schema
+#### A simple usage schema diagram
 ```
 HTTP Server          DB Server
 -----------          ---------
@@ -38,6 +38,7 @@ var fc2={
 var adapter1=new adapter(fc1);
 var adapter2=new adapter(fc2);
 
+// create the routing (data flow) logic
 adapter1.pipe(adapter2).pipe(adapter1);
 
 // call function `test2` from `adapter2`
@@ -77,5 +78,7 @@ var clientSocket=require('net').connect('/tmp/db.sock',function(){
 	clientSocket.pipe(adapter2).pipe(clientSocket);
 });
 ```
+**For more informations consult/run <a href="https://github.com/RTComm/service-adapter/blob/master/test.js"><b>the test.js file</b></a>**
+
 --------------------------------------------------------
 **Micro Service Adapter** is licensed under the MIT license. See the included `LICENSE` file for more details.
