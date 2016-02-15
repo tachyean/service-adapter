@@ -52,6 +52,11 @@ test1 call { '0': [Function: bound ],
   '2': undefined,
   '3': undefined }
 ```
+#### Function params `function (callback, header, body, data)`
+* `callback` - function
+* `header` - Object
+* `body` - Buffer
+* `data` - additional Object data from `adapter.data`
 
 --------------------------------------------------------
 **Micro Service Adapter** is licensed under the MIT license. See the included `LICENSE` file for more details.
