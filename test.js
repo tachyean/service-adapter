@@ -41,14 +41,17 @@ readStream.
 // object functions for 1st adapter
 var fc1={
 	test1:function(callback,header,body,data){
-		console.log('test1 call',arguments);
+		console.log('test1 call',header);//,arguments
+		callback('test2',header+' pong');
 	}
 };
 // object functions for 2nd adapter
 var fc2={
 	test2:function(callback,header,body,data){
-		console.log('test2 call',arguments);
-		callback('test1',header+' back');
+		console.log('test2 call',header);//,arguments
+		//callback('test1',header+' back');
+		data.writeHead(200,{'Content-Type':'text/plain'});
+		data.end(header);
 	}
 };
 
@@ -73,11 +76,20 @@ try{
 require('net').createServer(function(serverSocket){
 	console.log('s onConnect');
 	serverSocket.pipe(adapter1).pipe(serverSocket);
-	adapter1._callback('test2','welcome');
+	//adapter1._callback('test2','welcome');
 }).listen(sock);
 
 // pipe `adapter2` into client socket stream `clientSocket`
 var clientSocket=require('net').connect(sock,function(){
 	console.log('c onConnect');
 	clientSocket.pipe(adapter2).pipe(clientSocket);
+	startHttpServer(adapter2);
 });
+
+function startHttpServer(adapter2){
+	require('http').createServer(function(req,res){
+		console.log('http client connect');
+		adapter2.data=res;
+		adapter2._callback('test1','ping');
+	}).listen(80,'192.168.56.101');
+}
