@@ -1,0 +1,28 @@
+{
+  "name": "service-adaptor",
+  "version": "0.0.1",
+  "description": "Micro Service Adaptor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No test specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RTComm/service-adaptor.git"
+  },
+  "keywords": [
+    "micro",
+    "service",
+    "adaptor",
+    "server",
+    "client",
+    "proxy",
+    "protocol"
+  ],
+  "author": "Tanase Laurentiu <expertphp@gmail.com> (http://xpertmailer.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RTComm/service-adaptor/issues"
+  },
+  "homepage": "https://github.com/RTComm/service-adaptor#readme"
+}
