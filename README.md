@@ -6,7 +6,7 @@ $ npm install service-adapter
 ```js
 var adapter=require('service-adapter');
 ```
-A simple usage schema
+#### A simple usage schema
 ```
 HTTP Server          DB Server
 -----------          ---------
@@ -16,7 +16,7 @@ HTTP Server          DB Server
      |     ----------    |
      -----> adapter <-----
 ```
-Basic routing
+#### Basic routing
 ```js
 // object functions for 1st adapter
 var fc1={
@@ -52,11 +52,19 @@ test1 call { '0': [Function: bound ],
   '2': undefined,
   '3': undefined }
 ```
-#### Function params `function (callback, header, body, data)`
-* `callback` - function
+##### Adapter constructor `new adapter (functions, options)`
+* `functions` - Object functions list
+* `options` - Object, `data` key for `adapter.data`
+
+##### Function adapter `function (callback, header, body, data)`
+* `callback` - Function, to push data into next readable stream
 * `header` - Object
 * `body` - Buffer
-* `data` - additional Object data from `adapter.data`
+* `data` - Object data `adapter.data`
 
+Bound `adapter1` to another socket stream adapter `socketAdapter`
+```js
+socketAdapter.pipe(adapter1).pipe(socketAdapter);
+```
 --------------------------------------------------------
 **Micro Service Adapter** is licensed under the MIT license. See the included `LICENSE` file for more details.
