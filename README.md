@@ -40,6 +40,17 @@ adapter1.pipe(adapter2).pipe(adapter1);
 // call function `test2` from `adapter2`
 adapter1._callback('test2','welcome');
 ```
+Output
+```
+test2 call { '0': [Function: bound ],
+  '1': 'welcome',
+  '2': undefined,
+  '3': undefined }
+test1 call { '0': [Function: bound ],
+  '1': 'welcome back',
+  '2': undefined,
+  '3': undefined }
+```
 
 --------------------------------------------------------
 **Micro Service Adapter** is licensed under the MIT license. See the included `LICENSE` file for more details.
