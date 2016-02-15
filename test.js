@@ -4,8 +4,9 @@ var adapter=require('./index.js');
 
 //console.log(adapter({},{data:'test'}));
 
-var inherits=require('util').inherits,Readable=require('stream').Readable;
 /*
+var inherits=require('util').inherits,Readable=require('stream').Readable;
+
 inherits(test,Readable);
 function test(){
 	Readable.call(this);
@@ -55,7 +56,28 @@ var fc2={
 var adapter1=new adapter(fc1);
 var adapter2=new adapter(fc2);
 
+/*
 adapter1.pipe(adapter2).pipe(adapter1);
 
 // send some data into the flow
 adapter1._callback('test2','welcome');
+*/
+
+var sock='/tmp/db.sock',fs=require('fs');
+try{
+	var stats=fs.lstatSync(sock);
+	if(stats&&stats.isSocket()){fs.unlinkSync(sock);}
+}catch(e){}
+
+// pipe `adapter1` into server socket stream `serverSocket`
+require('net').createServer(function(serverSocket){
+	console.log('s onConnect');
+    serverSocket.pipe(adapter1).pipe(serverSocket);
+	adapter1._callback('test2','welcome');
+}).listen(sock);
+
+// pipe `adapter2` into client socket stream `clientSocket`
+var clientSocket=require('net').connect(sock,function(){
+	console.log('c onConnect');
+    clientSocket.pipe(adapter2).pipe(clientSocket);
+});
