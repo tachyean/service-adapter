@@ -78,7 +78,7 @@ var clientSocket=require('net').connect('/tmp/db.sock',function(){
 	clientSocket.pipe(adapter2).pipe(clientSocket);
 });
 ```
-**For more informations consult/run <a href="https://github.com/RTComm/service-adapter/blob/master/test.js"><b>the test.js file</b></a>**
+**For more informations consult or run the <a href="https://github.com/RTComm/service-adapter/blob/master/test.js"><b>test.js</b></a> file**
 
 --------------------------------------------------------
 **Micro Service Adapter** is licensed under the MIT license. See the included `LICENSE` file for more details.
