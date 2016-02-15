@@ -65,14 +65,14 @@ test1 call { '0': [Function: bound ],
 ##### Bound adapter to socket
 The server is listening on unix socket `/tmp/db.sock`
 ```js
-// bound `adapter1` to socket server `serverSocket`
+// bound `adapter1` to server socket `serverSocket`
 require('net').createServer(function(serverSocket){
 	serverSocket.pipe(adapter1).pipe(serverSocket);
 }).listen('/tmp/db.sock');
 
-// bound `adapter2` to socket client `socketClient`
-var socketClient=require('net').connect('/tmp/db.sock',function(){
-	socketClient.pipe(adapter2).pipe(socketClient);
+// bound `adapter2` to client socket `clientSocket`
+var clientSocket=require('net').connect('/tmp/db.sock',function(){
+	clientSocket.pipe(adapter2).pipe(clientSocket);
 });
 ```
 --------------------------------------------------------
