@@ -41,7 +41,7 @@ adapter.prototype._send=function(header,body){
 		if(!(header.f in this._f)){throw new Error('invalid function call name [ '+header.f+' ]');}
 		this._f[header.f](this._callback.bind(this),header.h,body,this.data);
 	}catch(e){// got error
-		this.emit('error',e);
+		this.emit('error',e);// < this will block the flow, todo: need to unblock
 	}
 	return false;
 };
@@ -74,14 +74,14 @@ adapter.prototype._transform=function(data,enc,cb){
 							this._transform(left.slice(header.b),enc,cb);// parse extra bytes
 						}
 					}
-				}else{// no body
+				}else{// body is empty
 					c=this._send(header);// no cb() run
 					var extra=this._c.slice(index+1); // extra bytes
 					this._c=this._x;// set empty chache
 					this._transform(extra,enc,cb);// parse extra bytes
 				}
 			}catch(e){// got error
-				this.emit('error',e);
+				this.emit('error',e);// < this will block the flow, todo: need to unblock
 				var extra=this._c.slice(index+1); // extra bytes
 				this._c=this._x;// set empty chache
 				c=false;// no cb() run

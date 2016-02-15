@@ -14,7 +14,8 @@ function test(){
 	/*this.a=['{"f":"t","b":4}\n'];
 	this.a.push('012');
 	this.a.push('3{"f":"t"}\n');*/
-	this.a=['{"f":"t","b":4}\n01','2','3{"f"',':"t"}\n'];
+	//this.a=['{"f":"t","b":4}\n01','2','3{"f"',':"t"}\n'];
+	this.a=['{"f".:"t"}\n{"f"',':"t"}\n'];
 }
 test.prototype._read=function(){
 	if(this.i<this.a.length){this.push(this.a[this.i]);}
