@@ -62,9 +62,18 @@ test1 call { '0': [Function: bound ],
 * `body` - Buffer
 * `data` - Object data `adapter.data`
 
-Bound `adapter1` to another socket stream adapter `socketAdapter`
+Bound `adapter1` to socket server `serverSocket`
+Bound `adapter2` to socket client `socketClient`
 ```js
-socketAdapter.pipe(adapter1).pipe(socketAdapter);
+// server
+require('net').createServer(function(serverSocket){
+	serverSocket.pipe(adapter1).pipe(serverSocket);
+}).listen('/tmp/db.sock');
+
+// client
+var socketClient=require('net').connect('/tmp/db.sock',function(){
+	socketClient.pipe(adapter2).pipe(socketClient);
+});
 ```
 --------------------------------------------------------
 **Micro Service Adapter** is licensed under the MIT license. See the included `LICENSE` file for more details.
