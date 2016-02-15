@@ -62,15 +62,15 @@ test1 call { '0': [Function: bound ],
 * `body` - Buffer
 * `data` - Object data `adapter.data`
 
-##### Bound adapter to socket
+##### Socket stream adapter
 The server is listening on unix socket `/tmp/db.sock`
 ```js
-// bound `adapter1` to server socket `serverSocket`
+// pipe `adapter1` into server socket stream `serverSocket`
 require('net').createServer(function(serverSocket){
 	serverSocket.pipe(adapter1).pipe(serverSocket);
 }).listen('/tmp/db.sock');
 
-// bound `adapter2` to client socket `clientSocket`
+// pipe `adapter2` into client socket stream `clientSocket`
 var clientSocket=require('net').connect('/tmp/db.sock',function(){
 	clientSocket.pipe(adapter2).pipe(clientSocket);
 });
