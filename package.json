@@ -1,6 +1,6 @@
 {
   "name": "service-adapter",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Micro Service Adapter",
   "main": "index.js",
   "scripts": {
