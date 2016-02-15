@@ -6,6 +6,7 @@ $ npm install service-adapter
 ```js
 var adapter=require('service-adapter');
 ```
+A simple usage schema
 ```
 HTTP Server          DB Server
 -----------          ---------
