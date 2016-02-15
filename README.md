@@ -1,5 +1,7 @@
-# Micro Service Adapter
-Micro Service Adapter - stream transform protocol for node.js
+## Micro Service Adapter
+
+**Micro Service Adapter - stream transform protocol for node.js**
+
 ```sh
 $ npm install service-adapter
 ```
